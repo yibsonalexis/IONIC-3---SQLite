@@ -1,3 +1,5 @@
+# Video Tutorial: [Ver video](https://youtu.be/bg8IXp20kXQ)
+
 This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
 
 ## How to use this template
