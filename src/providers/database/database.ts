@@ -64,4 +64,8 @@ export class DatabaseProvider {
     })
   }
 
+  DeleteUser(idUser){
+    
+  }
+
 }

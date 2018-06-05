@@ -10,6 +10,58 @@
   
   <button ion-button block (click)="CreateUser();"> Crear usuario</button>
   <button ion-button block (click)="GetAllUser();"> Listar Usuarios</button>
+
+  <form [formGroup]="todo" (ngSubmit)="CreateUser()" novalidate>
+    <ion-item>
+      <ion-label>Nombre</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="todo.get('name').errors && todo.get('name').dirty">
+      <p color="danger" ion-text *ngIf="todo.get('name').hasError('required')"> Campo es requerido</p>
+      <p color="danger" ion-text *ngIf="todo.get('name').hasError('minlength')"> Cantidad minima de caractares es (4)</p>
+      <p color="danger" ion-text *ngIf="todo.get('name').hasError('maxlength')"> Cantidad maxima de caractares es (8)</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Apellido</ion-label>
+      <ion-input type="text" formControlName="lastname"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="todo.get('lastname').errors && todo.get('lastname').dirty">
+      <p color="danger" ion-text *ngIf="todo.get('lastname').hasError('required')"> Campo es requerido</p>
+      <p color="danger" ion-text *ngIf="todo.get('lastname').hasError('minlength')"> Cantidad minima de caractares es (4)</p>
+      <p color="danger" ion-text *ngIf="todo.get('lastname').hasError('maxlength')"> Cantidad maxima de caractares es (8)</p>
+    </ion-item>
+    <ion-item>
+      <ion-label>Indetificación</ion-label>
+      <ion-input type="text" formControlName="identification"></ion-input>
+    </ion-item>
+    <button ion-button type="submit" [disabled]="!todo.valid">Submit</button>
+  </form>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of ListUser">
+      <ion-item>      
+        <h2>{{item.name }} {{item.lastname}}</h2>
+        <p>{{item.identification}}</p>
+      </ion-item>
+      <!-- <ion-item-options side="left">
+        <button ion-button color="primary">
+          <ion-icon name="text"></ion-icon>
+          Text
+        </button>
+        <button ion-button color="secondary">
+          <ion-icon name="call"></ion-icon>
+          Call
+        </button>
+      </ion-item-options> -->
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="DeleteUser(item.id)">
+          <ion-icon name="delete"></ion-icon>
+          Eliminar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
   
 
 </ion-content>
